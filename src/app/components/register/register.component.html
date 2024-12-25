@@ -2,47 +2,88 @@
     <div class="box">
         <h2>Sign Up</h2>
         <p>GCETLY Placement</p>
-        <form>
+        <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
             <div class="inputBox">
-                <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);"  value="">
+                <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="student.email" >
                 <label>Email</label>
             </div>
             <div class="inputBox">
-                <input type="text" name="name" required onkeyup="this.setAttribute('value', this.value);"  value="">
+                <input type="password" name="password" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="student.password" >
+                <label>Password</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="name" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="student.name">
                 <label>Name</label>
             </div>
             <div class="inputBox">
-                <input type="text" name="regno" required onkeyup="this.setAttribute('value', this.value);"  value="">
+                <input type="text" name="registerNumber" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="student.registerNumber">
                 <label>Register.No</label>
             </div>
             <div class="inputBox">
-                <input type="text" name="rollno" required onkeyup="this.setAttribute('value', this.value);"  value="">
+                <input type="text" name="rollNumber" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="student.rollNumber">
                 <label>Roll.No</label>
             </div>
             <div class="inputBox">
-                <input type="text" name="Phone.No" required onkeyup="this.setAttribute('value', this.value);"  value="">
+                <input type="text" name="phone" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="student.phone"   (input)="formatPhoneNumber($event)">
                 <label>Phone.No</label>
             </div>
             <div class="inputBox">
-                <input type="number" name="batch" required onkeyup="this.setAttribute('value', this.value);"  value="">
+                <input type="number" name="batch" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="student.batch">
                 <label>Batch.No</label>
             </div>
-            <div class="inputBox">
-                <input type="text" name="department" required onkeyup="this.setAttribute('value', this.value);"  value="">
-                <label>Department</label>
+
+            <div class="departmentBox">
+                <legend class="input-title">Department</legend>
+                <div class="input-container">
+                    <select name="department" id="input-box" [(ngModel)]="student.department" required>
+                        <option value='CSE'>CSE</option>
+                        <option value='MECH'>MECH</option>
+                        <option value='ECE'>ECE</option>
+                        <option value='EEE'>EEE</option>
+                        <option value='CIVIL'>CIVIL</option>
+                    </select>
+                    <span class="placeholder-text"></span>
+                </div>
             </div>
+
+
             <div class="inputBox">
-                <input type="text" name="community" required onkeyup="this.setAttribute('value', this.value);"  value="">
-                <label>Community</label>
+                <input type="date" name="dateOfBirth" required [(ngModel)]="student.dateOfBirth">
+                <label>Date of Birth</label>
             </div>
             
-            <div class="inputBox">
-                <input type="text" name="caste" required onkeyup="this.setAttribute('value', this.value);"  value="">
-                <label>Caste</label>
+            
+            <div class="option-container">
+                <label for="gender" class="input-title">Gender: </label>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="M" value="M"  name="gender"  [(ngModel)]="student.gender" required>
+                        <label for="M"> Male </label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="F" value="F" name="gender" [(ngModel)]="student.gender"> 
+                        <label for="F"> Female </label>
+                    </div>
+                </div>
             </div>
+
+            <div class="option-container">
+                <label for="hosteler" class="input-title">Hosteler: </label>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="yes" value=true  name="hosteler"  [(ngModel)]="student.hosteler" required>
+                        <label for="yes"> Yes </label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="no" value=false name="hosteler"  [(ngModel)]="student.hosteler"> 
+                        <label for="no"> No </label>
+                    </div>
+                </div>
+            </div>
+
             <div class="sub-button">
-                <button class="btn btn-primary">Register</button>
+                <button class="btn btn-primary" type="submit" (click)="onRegister()">Register</button>
             </div>
-        </form>
+        </form> 
     </div>
 </div>
