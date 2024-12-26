@@ -1,0 +1,14 @@
+<div class="container">
+
+    <div class="box">
+        <h2>Verify Account</h2>
+        <p>GCETLY Placement</p>
+        <form (ngSubmit)="verifyOTP()">
+        <div class="inputBox">
+            <input type="text" name="otp" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="student.message">
+            <label>OTP</label>
+        </div>
+        <input type="submit" name="verify" value="verify">
+        </form>
+    </div>
+</div>

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { BehaviorSubject, throwError } from 'rxjs';
-import { Student } from '../models/student.model';
+import { LoginModel, Student } from '../models/student.model';
 import { EMAIL_KEY, TOKEN_KEY, USER_KEY } from '../constants/data.model';
 
 @Injectable({
@@ -12,32 +12,18 @@ import { EMAIL_KEY, TOKEN_KEY, USER_KEY } from '../constants/data.model';
 })
 export class AuthService {
   studentDetails: BehaviorSubject<Student> = new BehaviorSubject(new Student());
-  msg: BehaviorSubject<string> = new BehaviorSubject<string>('');
     
   constructor(private http: HttpClient, private router: Router) { }
   
-  // register(formdata: Student) {
-  //   return this.http.post<any>(`${environment.host}/api/auth/signup`,
-  //     formdata
-  //   ).pipe(
-  //     map(authData=>{
-  //       console.log(authData);
-  //       this.msg=authData;
-  //       if(authData){
-  //         this.setInformation(authData);
-  //       }
-  //   })
-  //   );
-  // }
 
   register(formdata: Student) {
     console.log('Form Data:', formdata);
     return this.http.post<any>(`${environment.host}/api/auth/signup`, formdata).pipe(
       map(authData => {
         console.log('Mapped Auth Data:', authData);
-        this.msg = authData;
         if (authData) {
           this.setInformation(authData);
+          this.router.navigate(['/verify/'+formdata.email]);
         }
         return authData;
       }),
@@ -47,10 +33,40 @@ export class AuthService {
       })
     );
   }
+  verify(student:Student){
+    console.log('Form Data:', student);
+    return this.http.post<any>(`${environment.host}/api/auth/signup/verify`, student).pipe(
+      map(data => {
+        console.log('Mapped Auth Data:', data);
+        this.router.navigate(['/login']);
+        return data;
+      }),
+      catchError(err => {
+        console.error('Error in HTTP Request:', err);
+        return throwError(err); // Pass error to the subscriber
+      })
+    );
+  }
+  login(loginObj:LoginModel){
+    console.log('Form Data:', loginObj);
+    return this.http.post<any>(`${environment.host}/api/auth/login`,loginObj).pipe(
+      map(data => {
+        console.log('Mapped Auth Data:', data);
+        data.student.token=data.accessToken;
+        this.setInformation(data.student);
+        this.router.navigate(['/']);
+        return data;
+      }),
+      catchError(err => {
+        console.error('Error in HTTP Request:', err);
+        return throwError(err); 
+      })
+    );
 
+  }
   setInformation(authData: Student) {
     const studentData:Student=authData;
-    // this.storeToken(userData.token);
+    this.storeToken(studentData.token);
     this.setUser(authData);
   }
 
@@ -69,7 +85,6 @@ export class AuthService {
   }
   public setEmail(email: string) {
     localStorage.removeItem(EMAIL_KEY);
-    //store: boolean, if (store)
     localStorage.setItem(EMAIL_KEY, email);
   }
 

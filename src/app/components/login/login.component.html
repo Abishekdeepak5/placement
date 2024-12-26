@@ -3,13 +3,13 @@
     <div class="box">
         <h2>Sign in</h2>
         <p>GCETLY Placement Account</p>
-        <form>
+        <form (ngSubmit)="login()">
         <div class="inputBox">
-            <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);"  value="">
-            <label>Username</label>
+            <input type="text" name="registerNumber" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="student.registerNumber">
+            <label>Register..No</label>
         </div>
         <div class="inputBox">
-                <input type="text" name="text" required onkeyup="this.setAttribute('value', this.value);" value="">
+                <input type="text" name="text" required onkeyup="this.setAttribute('value', this.value);" value="" [(ngModel)]="student.password">
                 <label>Passward</label>
             </div>
         <input type="submit" name="sign-in" value="Sign In">

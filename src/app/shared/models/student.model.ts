@@ -1,6 +1,7 @@
-export class Student{
+import { Base } from "./base.model";
+
+export class Student extends Base{
     name:string='';
-    email:string='';
     registerNumber:string='';
     rollNumber:string='';
     phone:string='';
@@ -21,3 +22,7 @@ export interface Product {
     };
   }
   
+export class LoginModel{
+  registerNumber:string='';
+  password:string='';
+}
