@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="box">
+        <h2>Create Drive</h2>
+        <p>GCETLY Placement</p>
+        <form (ngSubmit)="createDrive()">
+        <div class="inputBox">
+            <input type="text" name="jobTite" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="drive.jobTitle">
+            <label>Job Tite</label>
+        </div>
+        <div class="inputBox">
+                <input type="text" name="description" required onkeyup="this.setAttribute('value', this.value);" value="" [(ngModel)]="drive.description">
+                <label>Description</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="text" name="companyLocation" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="drive.companyLocation">
+            <label>Company Location</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="date" name="driveDate" required [(ngModel)]="drive.date">
+            <label>Drive Date</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="text" name="ctc" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="drive.ctc">
+            <label>CTC</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="text" name="driveLocation" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="drive.driveLocation">
+            <label>Drive Location</label>
+        </div>
+
+        <div class="option-container">
+            <label for="isHistoryOfAllowed" class="input-title">History Allowed: </label>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="yes" value=true  name="isHistoryOfAllowed" [(ngModel)]="drive.isHistoryOfAllowed" required>
+                    <label for="yes"> Yes </label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="no" value=false name="isHistoryOfAllowed" [(ngModel)]="drive.isHistoryOfAllowed" > 
+                    <label for="no"> No </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="inputBox">
+            <input type="text" name="eligibleCgpa" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="drive.eligibleCgpa">
+            <label>Eligible CGPA</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="date" name="registrationClosingDate" required [(ngModel)]="drive.registrationClosingDate">
+            <label>Registration Closing Date</label>
+        </div>
+
+        <input type="submit" name="create" value="Create">
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="box">
+        <h2>Marks Update</h2>
+        <p>GCETLY Placement</p>
+        <form  (ngSubmit)="setMarks()">
+        <div class="inputBox">
+            <input type="text" name="sslc" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.sslc">
+            <label>10th percentage(%)</label>
+        </div>
+        <div class="inputBox">
+                <input type="text" name="hsc1" required onkeyup="this.setAttribute('value', this.value);" value="" [(ngModel)]="marks.hsc1">
+                <label>11th percentage(%)</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="text" name="hsc2" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.hsc2">
+            <label>12th percentage(%)</label>
+        </div>
+
+
+        <div class="inputBox">
+            <input type="text" name="diploma" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.diploma">
+            <label>Diploma</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="text" name="sem1" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.sem1">
+            <label>Semester-1 GPA</label>
+        </div>
+
+        
+        <div class="inputBox">
+            <input type="text" name="sem2" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.sem2">
+            <label>Semester-2 GPA</label>
+        </div>
+
+        
+        <div class="inputBox">
+            <input type="text" name="sem3" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.sem3">
+            <label>Semester-3 GPA</label>
+        </div>
+
+        
+        <div class="inputBox">
+            <input type="text" name="sem4" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.sem4">
+            <label>Semester-4 GPA</label>
+        </div>
+
+        
+        <div class="inputBox">
+            <input type="text" name="sem5" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.sem5">
+            <label>Semester-5 GPA</label>
+        </div>
+
+        
+        <div class="inputBox">
+            <input type="text" name="sem6" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.sem6">
+            <label>Semester-6 GPA</label>
+        </div>
+
+        
+        <div class="inputBox">
+            <input type="text" name="sem7" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.sem7">
+            <label>Semester-7 GPA</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="text" name="cgpa" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.cgpa">
+            <label>CGPA</label>
+        </div>
+
+
+        <div class="inputBox">
+            <input type="text" name="currentBacklogs" required onkeyup="this.setAttribute('value', this.value);"  value="" [(ngModel)]="marks.currentBacklogs">
+            <label>Current Backlogs</label>
+        </div>
+
+        <div class="option-container">
+            <label for="historyOfArrear" class="input-title">History of Arrear: </label>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="yes" value=true  name="historyOfArrear" [(ngModel)]="marks.historyOfArrear" required>
+                    <label for="yes"> Yes </label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="no" value=false name="historyOfArrear" [(ngModel)]="marks.historyOfArrear"> 
+                    <label for="no"> No </label>
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" name="create" value="Create">
+        </form>
+    </div>
+</div>
+

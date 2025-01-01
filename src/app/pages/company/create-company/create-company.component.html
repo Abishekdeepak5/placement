@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="box">
+        <h2>Create Company</h2>
+        <p>GCETLY Placement</p>
+        <form (ngSubmit)="createCompany()">
+        <div class="inputBox">
+            <input type="text" name="companyName" required onkeyup="this.setAttribute('value', this.value);"  value=""  [(ngModel)]="company.companyName">
+            <label>Company Name</label>
+        </div>
+        <div class="inputBox">
+                <input type="textarea" name="description" required onkeyup="this.setAttribute('value', this.value);" value=""  [(ngModel)]="company.description">
+                <label>Description</label>
+            </div>
+        <input type="submit" name="create" value="Create">
+        </form>
+    </div>
+</div>
