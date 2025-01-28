@@ -4,6 +4,18 @@
     background-size: cover;
     font-family: sans-serif;
 }
+.regOption{
+    width: 25rem;
+    position: absolute;
+    top:0%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-evenly;
+}
+.optionBtn{
+    width: inherit;
+}
 .box {
 position: absolute;
 top:0%;
@@ -129,4 +141,34 @@ box-shadow: 0 1px 1px 0 rgba(66,133,244,0.45), 0 1px 3px 1px rgba(66,133,244,0.3
 .sub-button{
     display:flex;
     justify-content: center;
+}
+.authBtn{
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width: 480px) {
+    .box{
+        width: 100%;
+        padding:0.2rem;
+        margin-top: 5em;
+    }    
+    .box .inputBox input {
+        width: 100%;
+    }
+    .authBtn{
+        display: inline-grid;
+        justify-content: normal;
+    }
+    .regOption{
+        display: inline-block;
+        width:100%;
+    }
+    .optionBtn{
+        margin-bottom: 0;
+    }
+
+}
+.logBtn,.regBtn{
+    margin-bottom: 1em;
 }

@@ -1,0 +1,68 @@
+.heading{
+    display:flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+.title{
+    color:var(--text-color);
+    font-size:2em;
+    font-weight:bold;
+}
+.company-container{
+    background-color:var(--bg-color);
+    color:var(--text-color);
+    border-radius:1em;
+}
+.company-list{
+    padding:0 1em;
+    margin-top:1em;
+}
+.list-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1em;
+    
+}
+.list-left h1{
+    font-size:1em;
+    font-weight:bold;
+}
+.list-left p{
+    font-size:0.8em;
+}
+.list-right{
+}
+.btn{
+   font-size: 1em;
+   margin-right:1em ; 
+}
+.buttons{
+    display: flex;
+}
+/* Mobile View */
+@media screen and (max-width: 768px) {
+    .heading h2{
+        font-size: medium;
+    }
+    .buttons{
+        font-size: 0.6em;
+    }
+    .list-container{
+        padding:0.2em;
+     }
+    .company-list{
+        padding: 0 0.2em;
+    }
+}
+@media screen and (max-width: 280px) {
+    .list-container{
+        display:block;
+        text-align: center;
+    }
+    .buttons{
+        text-align: center;
+        width:fit-content;
+        margin: 0 auto;
+    }
+}

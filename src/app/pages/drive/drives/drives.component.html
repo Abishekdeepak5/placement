@@ -1,0 +1,36 @@
+<div>
+    <h2 class="title">Upcoming Drives</h2>
+    
+      <ul class="drive-container" *ngFor="let drive of drives">
+        <li class="drive-list" (click)="showDrive(drive)">
+          <div class="list-container">
+            <div class="list-left">
+              <h1>{{ drive.companyName }}</h1>
+              <p>{{ drive.drive.jobTitle }}</p>
+              <p>{{ drive.drive.date|dateformat }}</p>
+            </div>
+            <div class="list-right" (click)=" $event.stopPropagation()" >
+              <p>{{ drive.drive.count }} Registered</p>
+              <div *ngIf="isStaff==false">
+                <div *ngIf="drive.registered==false">
+                  <button  class="btn btn-primary" (click)="applyDrive(drive)">Apply</button>
+                </div>
+                <div *ngIf="drive.registered==true">
+                  <p>Applied</p>
+                </div>
+              </div>
+              <div *ngIf="isStaff==true">
+                <!-- *ngIf="drive.registered==false" -->
+                <div>
+                  <button class="btn btn-primary" (click)="showEditDrive(drive.drive.id)">Edit</button>
+                  <button class="btn btn-primary" (click)="deleteDrive(drive.drive.id)">Delete</button>
+                </div>
+                <!-- <div *ngIf="drive.registered==true">
+                  <p>Drive end</p>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+</div>

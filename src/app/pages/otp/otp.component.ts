@@ -25,7 +25,7 @@ export class OtpComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       var email=params.get('email');
-      this.student.email=email?email:'';
+      this.student.user.email=email?email:'';
       console.log(email);
     });
   }

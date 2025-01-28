@@ -3,28 +3,43 @@
         <div class="profile-img-container">
             <div class="profileImg"></div>
         </div>
-        <h2>Abishek</h2>
-        <p>abishekdeepakffgmail.com</p>
+        <h2>{{userInfo.name}}</h2>
+        <p>{{userInfo.email}}</p>
+        <p>{{ user }}</p>
     </div>
     <div class="menuItem">
-        <a routerLink="/home/login" routerLinkActive="active">
+        <a routerLink="/home/drives" routerLinkActive="active">
             <div class="item-box">
                 <p class="item-logo"></p>
                 <h1>Drive</h1>
             </div>
         </a>
-        <a routerLink="/home/register" routerLinkActive="active">
+        <a routerLink="/home/companies" routerLinkActive="active">
             <div class="item-box">
                 <p class="item-logo"></p>
                 <h1>company</h1>
             </div>
         </a>
+
+        <a routerLink="/home/marks" routerLinkActive="active">
+            <div class="item-box">
+                <p class="item-logo"></p>
+                <h1>Update Marks</h1>
+            </div>
+        </a>
+
     </div>
     <div style="padding-bottom:5px;">
-        <div class="item-box" id="log-box">
+        <div class="item-box" id="log-box" (click)="toggleTheme()">
+            <p class="item-logo"></p>
+            <h1>Dark/Light</h1>
+        </div>
+    </div>
+
+    <div style="padding-bottom:5px;">
+        <div class="item-box" id="log-box" (click)="logOut()">
             <p class="item-logo"></p>
             <h1>Log Out</h1>
         </div>
-        <!-- <button (click)="toggleTheme()" class="toggle-btn" >Toggle</button> -->
     </div>
 </div>

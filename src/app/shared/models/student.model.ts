@@ -1,29 +1,16 @@
 import { Base } from "./base.model";
-
+import {UserModel} from "./user.model";
 export class Student extends Base{
-    name:string='';
+    isPlaced:any=false;
     registerNumber:string='';
     rollNumber:string='';
-    phone:string='';
-    password:string='';
-    department:string='CSE';
     batch:number=0;
-    gender:string='';
-    dateOfBirth:Date=new Date();
     hosteler:boolean=true;
+    user:UserModel=new UserModel();
 }
-export interface Product {
-    name: string;
-    data: {
-      year: number;
-      price: number;
-      CPUModel: string;
-      hardDiskSize: string;
-    };
-  }
-  
+ 
 export class LoginModel{
-  registerNumber:string='';
+  email:string='';
   password:string='';
 }
 
@@ -41,5 +28,41 @@ export class Mark{
     sem7:number=0;
     cgpa:number=0;
     currentBacklogs:number=0;
-    historyOfArrear:boolean=false;
+    historyOfArrear:any=false;
+}
+
+
+export class StudentDetail{
+  registerNumber:string='';
+  name:string='';
+  department:string='CSE';
+  email:string='';
+  phone:string='';
+  gender:string='';
+  rollNumber:string='';
+  sslc:number=0;
+  hsc1:number=0;
+  hsc2:number=0;
+  cgpa:number=0;
+  currentBacklogs:number=0;
+  diploma:number=0;
+  historyOfArrear:any=false;
+
+  constructor(student:any){
+    this.registerNumber=String(student.registerNumber);
+    this.rollNumber=student.rollNumber;
+    this.email=student.user.email;
+    this.name=student.user.name;
+    this.department=student.user.department;
+    this.phone=student.user.phone;
+    this.gender=student.user.gender;
+    this.sslc=student.marks.sslc
+    this.hsc1=student.marks.hsc1;
+    this.hsc2=student.marks.hsc2;
+    this.cgpa=student.marks.cgpa;
+    this.currentBacklogs=student.marks.currentBacklogs;
+    this.diploma=student.marks.diploma;
+    this.historyOfArrear=student.marks.historyOfArrear;
+  }
+
 }

@@ -1,0 +1,28 @@
+<div>
+    <div class="heading">
+      <h2 class="title">Our Recruiters</h2>
+      <div *ngIf="isStaff==true">
+        <button class="btn btn-primary" (click)="createCompany()">Create</button>
+      </div>
+    </div>
+
+      <ul class="company-container" *ngFor="let company of companies">
+        <li class="company-list" (click)="showDrives(company)">
+          <div class="list-container">
+            <div class="list-left">
+              <h1>{{company.companyName}}</h1>
+              <p>{{company.description}}</p>
+            </div>
+            <div class="list-right" (click)=" $event.stopPropagation()" >
+              <div *ngIf="isStaff==true">
+                <div class="buttons">
+                  <button class="btn btn-primary" (click)="showDriveCreate(company)">Create Drive</button>
+                  <button class="btn btn-primary" (click)="deleteCompany(company)">Delete</button> 
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        </li>
+      </ul>
+</div>

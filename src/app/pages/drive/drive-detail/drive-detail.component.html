@@ -1,0 +1,74 @@
+<div>
+  <h2 class="title">Drive Details</h2>
+    <table class="table" style="background-color: var(--bg-colors);">
+        <thead>
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">Company</th>
+            <th scope="col">{{drive.companyName}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Job Title</td>
+            <td>{{drive.drive.jobTitle}}</td>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td>{{drive.drive.companyLocation}}</td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td>{{drive.drive.description}}</td>
+          </tr>
+          <tr>
+            <td>Venue</td>
+            <td>{{drive.drive.driveLocation}}</td>
+          </tr>
+          <tr>
+            <td>CTC</td>
+            <td>{{drive.drive.ctc}}</td>
+          </tr>
+          <tr>
+            <td>Eligible CGPA</td>
+            <td>{{drive.drive.eligibleCgpa}}</td>
+          </tr>
+          <tr>
+            <td>History of Arrear</td>
+            <td *ngIf="drive.drive.historyOfAllowed==true">Allowed</td>
+            <td *ngIf="drive.drive.historyOfAllowed==false">Not Allowed</td>
+          </tr>
+          <tr>
+            <td>Registration Close</td>
+            <td>{{drive.drive.registrationClosingDate|dateformat}}</td>
+          </tr>
+
+          <tr>
+            <td>Drive Date</td>
+            <td>{{drive.drive.date|dateformat}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <div *ngIf="isStaff==true">
+        <h2 class="title">Registered Students</h2>
+        <button (click)="download()">Download</button>
+        <table  class="table table1" style="background-color: var(--bg-colors);">
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Students</th>
+              <th scope="col">Department</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students; index as i">
+              <td>{{i+1}}</td>
+              <td>{{student.user.name}}</td>
+              <td>{{student.user.department}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>

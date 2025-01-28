@@ -1,12 +1,19 @@
 export class Drive{
     companyId:number=0;
+    id:number=0;
     jobTitle:string='';
     description:string='';
     companyLocation:string='';
-    date:Date=new Date();
+    date:any=new Date();
     ctc:number=0;
     driveLocation:string='';
-    isHistoryOfAllowed:boolean=false;
+    historyOfAllowed:any=false;
     eligibleCgpa:number=0;
-    registrationClosingDate:Date=new Date();
+    registrationClosingDate:any=new Date();
+    count:number=0;
+}
+export class DriveResponse{
+    drive:Drive=new Drive();
+    registered:any=false;
+    companyName:string='';
 }

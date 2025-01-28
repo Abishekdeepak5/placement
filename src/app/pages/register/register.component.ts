@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { Student } from '../../shared/models/student.model';
 import { first } from 'rxjs';
 import { AuthService } from '../../shared/service/auth.service';
+import { UserModel } from '../../shared/models/user.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,13 +12,22 @@ import { AuthService } from '../../shared/service/auth.service';
 export class RegisterComponent implements OnInit{
   student: Student = new Student();
   errorMessage:string = ""  ;
+  isStudent:boolean=true;
   jsonData:any;
+  user:UserModel=new UserModel();
+  secret:number=0;
   
-  constructor(private auth:AuthService){}
+  constructor(private auth:AuthService,private ele:ElementRef,private router: Router){}
   ngOnInit(): void {
-    
+    this.toggleUser(true);
   }
-  
+  toggleUser(isStudent:boolean){
+    this.isStudent=isStudent;
+    let studentBtn=this.ele.nativeElement.querySelector(".studentBtn");
+    studentBtn.classList.toggle('btn-primary', isStudent);
+    let staffBtn=this.ele.nativeElement.querySelector(".staffBtn");
+    staffBtn.classList.toggle('btn-primary', !isStudent);
+  }
   showPhoneNumberError: boolean = false;
   phoneNum:any;
   formatPhoneNumber(event: any) {
@@ -36,6 +47,13 @@ export class RegisterComponent implements OnInit{
       console.log('Form submitted:', form.value);
     } else {
       console.log('Form is invalid');
+    }
+  }
+  regStaff(form:any){
+    if(form.any){
+      console.log('Form submitted:', form.value);
+    }else{
+
     }
   }
   onRegister1() {
@@ -61,13 +79,21 @@ export class RegisterComponent implements OnInit{
         this.errorMessage = err.message;
       });      
   }
-
+  registerStaff(){
+    // if(this.secret!=123456){
+    //   return;
+    // }
+    this.student.user.role="STAFF";
+    console.log(this.student);
+    this.onRegister();
+  }
   onRegister() {
     console.log('Starting Registration');
     this.auth.register(this.student).pipe(first()).subscribe(
       (data: any) => {
         console.log('Successful Response:', data);
         this.jsonData = data;
+        this.router.navigate(['/verify/'+data.email]);
       },
       (err: any) => {
         console.error('Error During Registration:', err);

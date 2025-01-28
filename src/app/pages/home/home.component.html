@@ -4,8 +4,11 @@
             <app-sidebar/>
         </div>
         <div class="main-container">
-            <div class="hamburger-menu" id="hamburger-menu">
+            <div class="hamburger-menu" id="hamburger-menu" (click)="toggleSidebar()">
                 ☰
+            </div>
+            <div class="hamburger-cross" id="hamburger-cross" (click)="toggleSidebar()">
+                X
             </div>
             <router-outlet></router-outlet>
         </div>

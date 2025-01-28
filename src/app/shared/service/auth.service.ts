@@ -6,12 +6,13 @@ import { catchError, map } from 'rxjs/operators';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { LoginModel, Student } from '../models/student.model';
 import { EMAIL_KEY, TOKEN_KEY, USER_KEY } from '../constants/data.model';
+import { UserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  studentDetails: BehaviorSubject<Student> = new BehaviorSubject(new Student());
+  userDetails: BehaviorSubject<UserModel> = new BehaviorSubject(new UserModel());
     
   constructor(private http: HttpClient, private router: Router) { }
   
@@ -23,7 +24,6 @@ export class AuthService {
         console.log('Mapped Auth Data:', authData);
         if (authData) {
           this.setInformation(authData);
-          this.router.navigate(['/verify/'+formdata.email]);
         }
         return authData;
       }),
@@ -52,20 +52,24 @@ export class AuthService {
     return this.http.post<any>(`${environment.host}/api/auth/login`,loginObj).pipe(
       map(data => {
         console.log('Mapped Auth Data:', data);
-        data.student.token=data.accessToken;
-        this.setInformation(data.student);
-        this.router.navigate(['/']);
+        data.user.token=data.accessToken;
+        this.setInformation(data.user);
         return data;
       }),
       catchError(err => {
+        console.log(err.error.msg);
         console.error('Error in HTTP Request:', err);
         return throwError(err); 
       })
     );
-
   }
-  setInformation(authData: Student) {
-    const studentData:Student=authData;
+
+  sendOtp(loginObj:LoginModel){
+    return this.http.post<any>(`${environment.host}/api/auth/sendOtp`,loginObj);  
+  }
+
+  setInformation(authData: UserModel) {
+    const studentData:UserModel=authData;
     this.storeToken(studentData.token);
     this.setUser(authData);
   }
@@ -78,7 +82,7 @@ export class AuthService {
     return localStorage.getItem(TOKEN_KEY);
   }
 
-  public setUser(user: Student) {
+  public setUser(user: UserModel) {
     localStorage.removeItem(USER_KEY);
     this.setUserObs(user);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
@@ -88,22 +92,32 @@ export class AuthService {
     localStorage.setItem(EMAIL_KEY, email);
   }
 
-  setUserObs(user: Student) {
-    this.studentDetails.next(user);
+  setUserObs(user: UserModel) {
+    this.userDetails.next(user);
   } 
   
   getStudentObs(){
-    return this.studentDetails.asObservable();
+    return this.userDetails.asObservable();
   }
 
-  getUser(){
+  getUser():UserModel{
     const student: any = localStorage.getItem(USER_KEY);
-    const studentInfo: Student = JSON.parse(student);
+    const studentInfo: UserModel= JSON.parse(student);
     return studentInfo;
+  }
+  isStaff():boolean{
+    const person=this.getUser();
+    console.log(person);
+    console.log(person.role,person.role=='STUDENT');
+    if(person.role=='STAFF'){
+       return true;
+    }
+    return false;
   }
   logOut(){
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
+    this.router.navigate(['/login']);
   }
 
 }

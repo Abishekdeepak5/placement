@@ -17,7 +17,8 @@
   body.dark-mode {
     /* dark mode */
     --bg-primary:#000000;
-    --bg-color: #18191A;
+    /* --bg-color: #18191A; */
+    --bg-color:#212529;
     --text-color: #ffffff;
     --bg-secondary:#ffffff;
     --bg-color-secondary: #f8f9fa;
